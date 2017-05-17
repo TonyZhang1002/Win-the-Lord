@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour {
 	public Button player3Button;
 	public Button player3Pass;
 
+	public Text theText;
+
 	List<int> prePlayer1;
 	List<int> prePlayer2;
 	List<int> prePlayer3;
@@ -38,6 +40,8 @@ public class GameController : MonoBehaviour {
 	int lord;
 
 	void Start(){
+		Screen.SetResolution(1120, 630, true);
+
 		p1Start = new List<int> ();
 		p2Start = new List<int> ();
 		p3Start = new List<int> ();
@@ -90,7 +94,25 @@ public class GameController : MonoBehaviour {
 			player3Pass.interactable = false;
 		} else {
 		}
-
+		if (checkIfEnd () == 1) {
+			if (lord == 1) {
+				theText.text = "Lord wins !";
+			} else {
+				theText.text = "Framers win !";
+			}
+		} else if (checkIfEnd () == 2) {
+			if (lord == 2) {
+				theText.text = "Lord wins !";
+			} else {
+				theText.text = "Framers win !";
+			}
+		} else if (checkIfEnd () == 3) {
+			if (lord == 3) {
+				theText.text = "Lord wins !";
+			} else {
+				theText.text = "Framers win !";
+			}
+		}
 		/*
 		if (Input.GetMouseButtonDown (0)) {
 			Debug.Log (Input.mousePosition.x + "   " + Input.mousePosition.y);
@@ -132,7 +154,19 @@ public class GameController : MonoBehaviour {
 		p1StartCardsNumber = player1.CardCount;
 		p2StartCardsNumber = player2.CardCount;
 		p3StartCardsNumber = player3.CardCount;
-		Debug.Log ("Player " + (lord+1) + " is the LORD!!!");
+		theText.text = "Player " + (lord+1) + " is the LORD!!!";
+
+	}
+
+	int checkIfEnd(){
+		if (player1.CardCount == 0)
+			return 1;
+		else if (player2.CardCount == 0)
+			return 2;
+		else if (player3.CardCount == 0)
+			return 3;
+		else
+			return 0;
 	}
 
 	void player1Choose(){
@@ -143,7 +177,7 @@ public class GameController : MonoBehaviour {
 					//Debug.Log ("HIT!");
 					//Debug.Log (player2.GetCard (i));
 					if (hasPlayed.Contains (p1Start[i])) {
-						Debug.Log ("Your need to choose again !");
+						theText.text = "Your need to choose again !";
 					} else {
 						if (prePlayer1.Contains (p1Start[i])) {
 							prePlayer1.Remove (p1Start[i]);
@@ -162,7 +196,7 @@ public class GameController : MonoBehaviour {
 			int h = PlayCards (prePlayer3);
 			//Debug.Log (h);
 			if (h == -1) {
-				Debug.Log ("You can not play these cards !");
+				theText.text = "You can not play these cards !";
 				prePlayer3.Clear ();
 				//player3Choose ();
 				trigger1 = 0;
@@ -182,7 +216,7 @@ public class GameController : MonoBehaviour {
 				trigger3 = 0;
 			}
 		} else {
-			Debug.Log ("You need to choose some cards to play !");
+			theText.text = "You need to choose some cards to play !";
 		}
 	}
 
@@ -208,7 +242,7 @@ public class GameController : MonoBehaviour {
 					//Debug.Log ("HIT!");
 					//Debug.Log (player2.GetCard (i));
 					if (hasPlayed.Contains (p2Start[i])) {
-						Debug.Log ("Your need to choose again !");
+						theText.text = "Your need to choose again !";
 					} else {
 						if (prePlayer2.Contains (p2Start[i])) {
 							prePlayer2.Remove (p2Start[i]);
@@ -227,7 +261,7 @@ public class GameController : MonoBehaviour {
 			int h = PlayCards (prePlayer1);
 			//Debug.Log (h);
 			if (h == -1) {
-				Debug.Log ("You can not play these cards !");
+				theText.text = "You can not play these cards !";
 				prePlayer1.Clear ();
 				//player1Choose ();
 				trigger1 = 1;
@@ -247,7 +281,7 @@ public class GameController : MonoBehaviour {
 				trigger3 = 0;
 			}
 		} else {
-			Debug.Log ("You need to choose some cards to play !");
+			theText.text = "You need to choose some cards to play !";
 		}
 	}
 
@@ -273,7 +307,7 @@ public class GameController : MonoBehaviour {
 					//Debug.Log ("HIT!");
 					//Debug.Log (player2.GetCard (i));
 					if (hasPlayed.Contains (p3Start[i])) {
-						Debug.Log ("Your need to choose again !");
+						theText.text = "Your need to choose again !";
 					} else {
 						if (prePlayer3.Contains (p3Start[i])) {
 							prePlayer3.Remove (p3Start[i]);
@@ -292,7 +326,7 @@ public class GameController : MonoBehaviour {
 			int h = PlayCards (prePlayer2);
 			//Debug.Log (h);
 			if (h == -1) {
-				Debug.Log ("You can not play these cards !");
+				theText.text = "You can not play these cards !";
 				prePlayer2.Clear ();
 				//player2Choose ();
 				trigger1 = 0;
@@ -312,7 +346,7 @@ public class GameController : MonoBehaviour {
 				trigger3 = 1;
 			}
 		} else {
-			Debug.Log ("You need to choose some cards to play !");
+			theText.text = "You need to choose some cards to play !";
 		}
 	}
 
