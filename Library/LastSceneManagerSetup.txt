@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Scenes/Win the Lord_Alpha.unity
+  isLoaded: 1
+  isActive: 1
